@@ -1,0 +1,113 @@
+# Реестр источников для контент-агента канала @nishchev
+#
+# Поля:
+#   name   — человекочитаемое имя (попадёт в подпись поста)
+#   url    — RSS/Atom-фид
+#   theme  — leadership | marketing | digital_transformation | robotization
+#   origin — foreign | ru   (foreign участвует в детекции эксклюзива)
+#   note   — необязательный комментарий
+#
+# Логика эксклюзива: если свежий материал пришёл из foreign-источника и в пуле
+# нет RU-источника на ту же тему за тот же период — кандидат на пометку 🌍 «эксклюзив».
+#
+# ВАЖНО: фиды иногда меняют адреса. Если источник не парсится — бот его просто
+# пропустит и напишет об этом в лог. Проверяй раз в пару месяцев.
+
+sources:
+
+  # ── Лидерство / менеджмент (мир) ───────────────────────────────
+  - name: "Harvard Business Review"
+    url: "https://feeds.hbr.org/harvardbusiness"
+    theme: leadership
+    origin: foreign
+  - name: "MIT Sloan Management Review"
+    url: "https://sloanreview.mit.edu/feed/"
+    theme: leadership
+    origin: foreign
+  - name: "McKinsey — Leadership"
+    url: "https://www.mckinsey.com/insights/rss"
+    theme: leadership
+    origin: foreign
+    note: "Если общий фид McKinsey шумит — замени на тематическую страницу через RSSHub."
+
+  # ── Маркетинг (мир) ────────────────────────────────────────────
+  - name: "Marketing Week"
+    url: "https://www.marketingweek.com/feed/"
+    theme: marketing
+    origin: foreign
+  - name: "Think with Google"
+    url: "https://www.thinkwithgoogle.com/feed/"
+    theme: marketing
+    origin: foreign
+  - name: "Marketing Brew"
+    url: "https://www.marketingbrew.com/feed"
+    theme: marketing
+    origin: foreign
+
+  # ── Цифровая трансформация предприятий (мир) ───────────────────
+  - name: "MIT Technology Review"
+    url: "https://www.technologyreview.com/feed/"
+    theme: digital_transformation
+    origin: foreign
+  - name: "VentureBeat"
+    url: "https://venturebeat.com/feed/"
+    theme: digital_transformation
+    origin: foreign
+  - name: "ZDNet — Digital Transformation"
+    url: "https://www.zdnet.com/topic/digital-transformation/rss.xml"
+    theme: digital_transformation
+    origin: foreign
+
+  # ── Роботизация / промышленная автоматизация (мир) ─────────────
+  - name: "IEEE Spectrum — Robotics"
+    url: "https://spectrum.ieee.org/feeds/topic/robotics.rss"
+    theme: robotization
+    origin: foreign
+  - name: "The Robot Report"
+    url: "https://www.therobotreport.com/feed/"
+    theme: robotization
+    origin: foreign
+  - name: "Robohub"
+    url: "https://robohub.org/feed/"
+    theme: robotization
+    origin: foreign
+  - name: "Robotics & Automation News"
+    url: "https://roboticsandautomationnews.com/feed/"
+    theme: robotization
+    origin: foreign
+
+  # ── Россия: издания (надёжные RSS) ─────────────────────────────
+  - name: "Хабр — Менеджмент"
+    url: "https://habr.com/ru/rss/flows/management/articles/?fl=ru"
+    theme: leadership
+    origin: ru
+  - name: "Хабр — Маркетинг"
+    url: "https://habr.com/ru/rss/flows/marketing/articles/?fl=ru"
+    theme: marketing
+    origin: ru
+  - name: "vc.ru"
+    url: "https://vc.ru/rss/all"
+    theme: digital_transformation
+    origin: ru
+  - name: "CNews"
+    url: "https://www.cnews.ru/inc/rss/news.xml"
+    theme: digital_transformation
+    origin: ru
+
+  # ── Россия: Telegram-каналы через RSSHub (best-effort) ─────────
+  # Чтобы это работало стабильно, лучше поднять свой RSSHub (см. README),
+  # иначе публичный rsshub.app часто отдаёт пустоту или 429.
+  - name: "Основатели (TG)"
+    url: "https://rsshub.app/telegram/channel/osnovateli"
+    theme: leadership
+    origin: ru
+  - name: "Цифра / BIS digital (TG)"
+    url: "https://rsshub.app/telegram/channel/bis_digital"
+    theme: digital_transformation
+    origin: ru
+  - name: "Mash Tech (TG)"
+    url: "https://rsshub.app/telegram/channel/mash_tech"
+    theme: robotization
+    origin: ru
+  # ↑ добавляй сюда любые TG-каналы по образцу:
+  #   https://rsshub.app/telegram/channel/<username_без_@>
